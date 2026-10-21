@@ -12,7 +12,7 @@ Detta är ett webplats för en fiktiv kaffeteria. Webbplatsen är planerad, desi
 
 Innan utvecklingen påbörjades har en tydlig visuell struktur och grafisk profil planerats. Allt designunderlag finns sparat i projektets repository under katalogen `/design`.
 
-Underlaget består av:
+Underlaget har tagits fram i **Figam** och består av:
 
 - **Wireframes (Trådskisser):** Skisser som visar webbplatsens planerade layout för både mindre skärmar (mobil-first) och större skärmar (dator).
 - **Designskiss/Mockup:** En visuell skiss som visar projektets grafiska profil med tänkta färger, typografi, bilder och grafiska element anpassade för målgruppen.
