@@ -1,0 +1,81 @@
+/* ANPASSA VARIABLER (Ska hämtas från Figma-designen) */
+
+:root {
+  /* Färger */
+  --primar-farg: #6f4e37;
+  --sekundar-farg: #d2b48c;
+  --backgrunds-farg: #ffebcd;
+  --text-farg: #2b1d12;
+  --vit-farg: #ffffff;
+
+  /* AVSTÅND (Padding & Margin) */
+  --avstand-xs: 0.4rem;
+  --avstand-sm: 0.8rem;
+  --avstand-md: 1.6rem;
+  --avstand-l: 2.4rem;
+  --avstand-xl: 3.2rem;
+
+  --huvud-typsnitt: Arial, Helvetica, sans-serif;
+}
+
+/* Nollställning av webläsarens standardmarginaler */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+body {
+  font-family: var(--huvud-typsnitt);
+  font-size: 1.6rem;
+  background-color: var(--backgrunds-farg);
+  color: var(--text-farg);
+  line-height: 1.5;
+}
+
+/* TYPSNITT & RUBRIKER */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--huvud-typsnitt);
+  font-weight: 700;
+  color: var(--text-farg);
+  line-height: 1.2;
+}
+h1 {
+  font-size: 3.2rem;
+}
+h2 {
+  font-size: 2.4rem;
+}
+h3 {
+  font-size: 2rem;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: var(--text-farg);
+}
+img {
+  max-width: 100%;
+  display: block;
+  height: auto;
+}
+/* LAYOUT FÖR HUVUDINNEHÅL */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--avstand-md);
+}
