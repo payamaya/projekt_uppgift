@@ -79,3 +79,62 @@ main {
   margin: 0 auto;
   padding: var(--avstand-md);
 }
+
+/* SIDHUVUD & NAVIGERING */
+.sidhuvud {
+  background-color: var(--primar-farg);
+  padding: var(--avstand-md);
+  text-align: center;
+}
+.logotyp a {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--vit-farg);
+  display: inline-block;
+  margin-bottom: var(--avstand-sm);
+}
+.logotyp-bild {
+  width: 6.8rem;
+  height: auto;
+  display: inline-block;
+}
+.meny-lista {
+  display: flex;
+  flex-direction: column;
+  gap: var(--avstand-sm);
+}
+
+.meny-lista a {
+  color: var(--vit-farg);
+  font-weight: bold;
+  padding: var(--avstand-xs) var(--avstand-md);
+  display: block;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.meny-lista a .aktiv {
+  background-color: var(--sekundar-farg);
+  color: var(--text-farg);
+}
+
+.meny-lista a:hover:not(.aktiv) {
+  color: var(--sekundar-farg);
+}
+
+/* RESPONSIV ANPPASSNING (Datorer ¤ Surfplattor)  */
+@media (min-width: 768px) {
+  .sidhuvud {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--avstand-xl);
+  }
+  .logotyp a {
+    margin-bottom: 0;
+  }
+  .meny-lista {
+    flex-direction: row;
+    gap: var(--avstand-md);
+  }
+}
