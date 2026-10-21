@@ -2,6 +2,9 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Anropa funktionen för att generera menyn
   skapaNavigeringsMeny()
+
+  // Anropa funktionen för mobilmenyn interaktivitet
+  hanteraMobilmeny()
 })
 
 // FUNKTION: Generera navigationsmeny
@@ -36,5 +39,20 @@ function skapaNavigeringsMeny() {
     // Lägg till länken inuti listelementet och listelementet inuti menyen
     listElement.appendChild(lankElement)
     menyLista.appendChild(listElement)
+  })
+}
+
+// FUNKTION: Generera navigationsmeny
+function hanteraMobilmeny() {
+  const menyKnapp = document.querySelector('#meny-knapp')
+  const navigering = document.querySelector('#navigering')
+
+  if (!menyKnapp || !navigering) return
+
+  // Lyssna efter klick på hamburgarknappen
+  menyKnapp.addEventListener('click', () => {
+    // Växla klassen 'öppen' på både knappen och navigeringen
+    menyKnapp.classList.toggle('oppen')
+    navigering.classList.toggle('oppen')
   })
 }

@@ -1,10 +1,9 @@
 /* ANPASSA VARIABLER (Ska hämtas från Figma-designen) */
-
 :root {
   /* Färger */
   --primar-farg: #6f4e37;
   --sekundar-farg: #d2b48c;
-  --backgrunds-farg: #ffebcd;
+  --bakgrunds-farg: #ffebcd;
   --text-farg: #2b1d12;
   --vit-farg: #ffffff;
 
@@ -18,8 +17,7 @@
   --huvud-typsnitt: Arial, Helvetica, sans-serif;
 }
 
-/* Nollställning av webläsarens standardmarginaler */
-
+/* Nollställning av webbläsarens standardmarginaler */
 *,
 *::before,
 *::after {
@@ -35,7 +33,7 @@ html {
 body {
   font-family: var(--huvud-typsnitt);
   font-size: 1.6rem;
-  background-color: var(--backgrunds-farg);
+  background-color: var(--bakgrunds-farg);
   color: var(--text-farg);
   line-height: 1.5;
 }
@@ -61,6 +59,7 @@ h2 {
 h3 {
   font-size: 2rem;
 }
+
 li {
   list-style: none;
 }
@@ -73,47 +72,91 @@ img {
   display: block;
   height: auto;
 }
-/* LAYOUT FÖR HUVUDINNEHÅL */
+
+/* LAYOUT FÖR HUVUDINNEHÅLL */
 main {
   max-width: 1200px;
   margin: 0 auto;
   padding: var(--avstand-md);
 }
 
-/* SIDHUVUD & NAVIGERING */
+/* SIDHUVUD & NAVIGERING (Mobile-first) */
 .sidhuvud {
   background-color: var(--primar-farg);
   padding: var(--avstand-md);
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
 }
-.logotyp a {
-  font-size: 2.4rem;
-  font-weight: 700;
-  color: var(--vit-farg);
-  display: inline-block;
-  margin-bottom: var(--avstand-sm);
-}
+
 .logotyp-bild {
   width: 6.8rem;
   height: auto;
   display: inline-block;
 }
+
+/* Hamburgarknappens basstil */
+.meny-knapp {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 3rem;
+  height: 2.4rem;
+  padding: 0;
+  z-index: 10;
+}
+
+/* De tre strecken i hamburgarikonen */
+.meny-barre {
+  width: 100%;
+  height: 3px;
+  background-color: var(--vit-farg);
+  border-radius: 2px;
+  transition:
+    transform 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
+  transform-origin: left center; /* Säkerställer korrekt X-animation */
+}
+
+/* Dölj navigeringen som standard på mobilen */
+.navigering {
+  display: none;
+  width: 100%;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--primar-farg);
+  padding: var(--avstand-md);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 5;
+}
+
+/* Visa navigeringen när den har klassen 'oppen' */
+.navigering.oppen {
+  display: block;
+}
+
 .meny-lista {
   display: flex;
   flex-direction: column;
   gap: var(--avstand-sm);
+  text-align: center;
 }
 
 .meny-lista a {
   color: var(--vit-farg);
   font-weight: bold;
-  padding: var(--avstand-xs) var(--avstand-md);
+  padding: var(--avstand-sm) var(--avstand-md);
   display: block;
   border-radius: 4px;
   transition: all 0.3s ease;
 }
 
-.meny-lista a .aktiv {
+.meny-lista a.aktiv {
   background-color: var(--sekundar-farg);
   color: var(--text-farg);
 }
@@ -122,16 +165,28 @@ main {
   color: var(--sekundar-farg);
 }
 
-/* RESPONSIV ANPPASSNING (Datorer ¤ Surfplattor)  */
+/* ANIMATION: Förvandla de tre strecken till ett X när knappen har klassen 'oppen' */
+.meny-knapp.oppen .meny-barre:nth-child(1) {
+  transform: rotate(45deg) translateY(-2px) translateX(2px);
+}
+.meny-knapp.oppen .meny-barre:nth-child(2) {
+  opacity: 0;
+}
+.meny-knapp.oppen .meny-barre:nth-child(3) {
+  transform: rotate(-45deg) translateY(2px) translateX(2px);
+}
+
+/* RESPONSIV ANPASSNING (Datorer & Surfplattor) */
 @media (min-width: 768px) {
-  .sidhuvud {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: var(--avstand-xl);
+  .meny-knapp {
+    display: none;
   }
-  .logotyp a {
-    margin-bottom: 0;
+  .navigering {
+    display: block;
+    position: static;
+    width: auto;
+    padding: 0;
+    box-shadow: none;
   }
   .meny-lista {
     flex-direction: row;
