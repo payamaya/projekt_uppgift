@@ -124,7 +124,7 @@ main {
 
 /* Dölj navigeringen som standard på mobilen */
 .navigering {
-  display: none;
+  display: block;
   width: 100%;
   position: absolute;
   top: 100%;
@@ -133,11 +133,18 @@ main {
   padding: var(--avstand-md);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 5;
+  /* Animera alla ändrngar mjukt under 0.3s */
+  transition: all 0.3s ease-in-out;
+  /* Flyta menyn 100% av sin egen bred åt vänster */
+  transform: translateX(-100%);
 }
 
 /* Visa navigeringen när den har klassen 'oppen' */
 .navigering.oppen {
-  display: block;
+  /* Flytta tillbaka menyn till sin urspringliga position */
+  transform: translateX(0px);
+  /* Animara mjukt tillbaks till sin plats */
+  transition: all 0.3s ease-in-out;
 }
 
 .meny-lista {
@@ -153,16 +160,30 @@ main {
   padding: var(--avstand-sm) var(--avstand-md);
   display: block;
   border-radius: 4px;
-  transition: all 0.3s ease;
 }
 
 .meny-lista a.aktiv {
   background-color: var(--sekundar-farg);
   color: var(--text-farg);
 }
-
 .meny-lista a:hover:not(.aktiv) {
   color: var(--sekundar-farg);
+}
+/* ANIMATION: Menyn glider in och ut */
+.navigering {
+  animation: navLink 0.4s ease-in-out;
+}
+@keyframes navLink {
+  /* Startläge: Menyn är synlig */
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  /* Slutläge: Utanför skärmen till vänster osynlig */
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
 }
 
 /* ANIMATION: Förvandla de tre strecken till ett X när knappen har klassen 'oppen' */
@@ -187,6 +208,10 @@ main {
     width: auto;
     padding: 0;
     box-shadow: none;
+    transform: translateX(0%);
+  }
+  .navigering {
+    animation: none;
   }
   .meny-lista {
     flex-direction: row;
