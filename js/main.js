@@ -13,8 +13,8 @@ function skapaNavigeringsMeny() {
   const sidor = [
     { namn: 'Startsida', lank: 'index.html' },
     { namn: 'Meny', lank: 'meny.html' },
-    { namn: 'Om Oss', lank: 'om-oss.html' },
     { namn: 'Kontakt', lank: 'kontakt.html' },
+    { namn: 'Om Oss', lank: 'om-oss.html' },
   ]
 
   // Hämta listelementet från HTML-Koden
