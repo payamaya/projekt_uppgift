@@ -1,11 +1,15 @@
 /* ANPASSA VARIABLER (Ska hämtas från Figma-designen) */
 :root {
   /* Färger */
-  --primar-farg: #6f4e37;
-  --sekundar-farg: #d2b48c;
-  --bakgrunds-farg: #ffebcd;
+  ---primar-farg: #6f4e37;
+  --primar-farg: #221108;
+  --sekundar-farg: #4c2b10;
+  --bakgrund-farg: #b39d7d;
+  --border-farg: #ffebcd;
   --text-farg: #2b1d12;
   --vit-farg: #ffffff;
+
+  --accent-farg: #f9ea99;
 
   /* AVSTÅND (Padding & Margin) */
   --avstand-xs: 0.4rem;
@@ -33,7 +37,7 @@ html {
 body {
   font-family: var(--huvud-typsnitt);
   font-size: 1.6rem;
-  background-color: var(--bakgrunds-farg);
+  background-color: var(--bakgrund-farg);
   color: var(--text-farg);
   line-height: 1.5;
 }
@@ -78,6 +82,109 @@ main {
   max-width: 1200px;
   margin: 0 auto;
   padding: var(--avstand-md);
+  height: auto;
+}
+
+/* VÄLKOMENSEKTION (Hero-section) */
+.hero-sektion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--avstand-md);
+  text-align: center;
+  border-radius: 8px;
+  margin-bottom: var(--avstand-l);
+  border: 2px solid var(--sekundar-farg);
+}
+.hero-image-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  display: block;
+  margin-bottom: var(--avstand-md);
+}
+.hero-innehall {
+  height: auto;
+}
+.hero-innehall h1 {
+  color: var(--vit-farg);
+  font-size: 3.2rem;
+  margin-bottom: var(--avstand-md);
+  position: absolute;
+  top: 2rem;
+  width: 100%;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+.hero-innehall p {
+  background-color: var(--bakgrund-farg, transparent);
+  font-size: 1.8rem;
+  max-width: 600px;
+}
+/* HERO SEKTION */
+.bild-hero {
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 1px 2px 6px var(--primar-farg);
+}
+.bild-sektion {
+  height: auto;
+}
+.card-hero {
+  border-radius: 8px;
+  border: 2px solid var(--sekundar-farg);
+  padding: var(--avstand-md);
+  margin-bottom: var(--avstand-sm);
+}
+.card-bild-hero {
+  height: min-content;
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 1px 2px 2px var(--sekundar-farg);
+}
+.card-hero h2 {
+  color: var(--text-farg);
+  font-weight: 700;
+  font-size: 1.8rem;
+  padding-block: var(--avstand-sm);
+}
+.card-hero p {
+  color: var(--text-farg);
+  font-size: 1.4rem;
+}
+/* KNAPPAR CSS */
+.btn-primar {
+  position: absolute;
+  bottom: 1rem;
+  transform: translateX(-50%);
+  display: inline-block;
+  background-color: var(--sekundar-farg);
+  color: var(--vit-farg);
+  font-weight: 500;
+  padding: var(--avstand-sm) var(--avstand-md);
+  border-radius: 16px;
+  text-decoration: none;
+  z-index: 2;
+  transition:
+    background 0.3s ease,
+    transform 0.2s ease;
+}
+.btn-primar:hover {
+  background-color: var(--primar-farg);
+  transform: translateX(-50%) translateY(-2px);
+}
+
+.pre-footer {
+  margin-top: var(--avstand-md);
+  border-radius: 8px;
+  border: 2px solid var(--sekundar-farg);
+  padding: var(--avstand-md);
 }
 
 /* SIDHUVUD & NAVIGERING (Mobile-first) */
@@ -89,6 +196,7 @@ main {
   align-items: center;
   position: sticky;
   top: 0;
+  z-index: 1;
 }
 
 .logotyp-bild {
@@ -174,6 +282,7 @@ main {
 .navigering {
   animation: navLink 0.4s ease-in-out;
 }
+
 @keyframes navLink {
   /* Startläge: Menyn är synlig */
   from {
