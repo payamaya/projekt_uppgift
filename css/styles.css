@@ -246,7 +246,7 @@ main {
   width: fit-content;
 }
 .sidfot-beskrivning {
-  font-size: 1.6rem;
+  font-size: clamp(1.6rem, 2vw, 2rem);
   line-height: 1.6;
   margin-bottom: var(--avstand-md);
   max-width: 400px;
@@ -364,6 +364,56 @@ main {
   animation: navLink 0.4s ease-in-out;
 }
 
+/* MENY KORT SEKTION SIDA*/
+.meny h1 {
+  font-size: clamp(3.2rem, 2.5vw, 4.8rem);
+  color: var(--primar-farg);
+}
+.meny-sektion h2 {
+  color: var(--accent-farg);
+}
+.meny-sektion h3 {
+  color: var(--accent-farg);
+}
+.meny-sektion p {
+  color: var(--vit-farg);
+}
+.meny-sektion {
+  border: 2px solid var(--accent-farg);
+  border-radius: 8px;
+  padding: 16px;
+  background-color: var(--sekundar-farg);
+  margin-top: 2.4rem;
+}
+.meny-card {
+  box-shadow: 1px 1px 8px var(--accent-farg);
+  margin-block: 2rem;
+  border-radius: var(--avstand-sm);
+  padding: var(--avstand-sm);
+}
+.meny-card img {
+  object-fit: cover;
+  height: 200px;
+  width: 100%;
+}
+.meny-card h3 {
+  margin-top: var(--avstand-l);
+  margin-bottom: var(--avstand-sm);
+  border-top: 1px solid var(--sekundar-farg);
+}
+.meny-sektion h2,
+.meny-sektion h3 {
+  margin-top: var(--avstand-l);
+  margin-bottom: var(--avstand-sm);
+  width: 100%;
+}
+
+.meny-sektion h2,
+.meny h1 {
+  display: flex;
+  justify-content: center;
+}
+
 @keyframes navLink {
   /* Startläge: Menyn är synlig */
   from {
@@ -426,5 +476,49 @@ main {
     display: flex;
     align-items: center;
     flex-direction: column;
+  }
+  .sidfot-beskrivning {
+    line-height: 1.6;
+    margin-bottom: var(--avstand-md);
+    max-width: 800px;
+  }
+}
+/* MENY DESKTOP */
+@media (min-width: 768px) {
+  #meny-varm-sektion,
+  #meny-kall-sektion {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--avstand-md);
+    width: 100%;
+    align-items: stretch;
+  }
+  #meny-varm-sektion h2,
+  #meny-kall-sektion h2 {
+    grid-column: 1/-1;
+    width: 100%;
+    margin-bottom: var(--avstand-md);
+  }
+
+  .meny-sektion {
+    width: auto;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+  }
+  .meny-card {
+    display: flex;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    margin-block: 0;
+  }
+  .meny-card p {
+    width: 100%;
+    max-width: 1200px;
   }
 }
