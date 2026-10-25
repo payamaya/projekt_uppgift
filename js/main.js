@@ -56,3 +56,100 @@ function hanteraMobilmeny() {
     navigering.classList.toggle('oppen')
   })
 }
+// Hämta
+const visaVarmMeny = document.querySelector('#meny-varm-sektion')
+const visaKallMeny = document.querySelector('#meny-kall-sektion')
+const API_URL = 'https://api.sampleapis.com/'
+//SÄTT EN BEGRÄNSNING FÖR ANTAL PRODUKTER SOM SKA VISAS
+const DATA_LIMIT = 4
+// Hämta Vram dryckor
+async function getVarmKaffe() {
+  try {
+    const response = await fetch(`${API_URL}coffee/hot`)
+    if (!response.ok) {
+      throw new Error(`HTTP-fel status: ${response.status}`)
+    }
+    // Konvert json till javascript object
+    const data = await response.json()
+    // VISA ENDAST FÖRSTA FEM PRODUKTER FRÅN API_URL(data)
+    const limitData = data.slice(0, DATA_LIMIT)
+    // Töma kantinen först
+    visaVarmMeny.innerHTML = ''
+
+    // Skapa och lägg till dynamisk h2
+    const headerVarmDryckor = document.createElement('h2')
+    headerVarmDryckor.innerText = 'Vamra Dryker'
+    visaVarmMeny.appendChild(headerVarmDryckor)
+
+    visaData(limitData, visaVarmMeny)
+  } catch (error) {
+    console.error('error :>> ', error)
+    // Visa fel meddlande om data kunde inte hämtas
+    visaVarmMeny.innerHTML = `
+    <h2>Varma Drycker</h2>
+    <p class="felmeddelande" style="color:#f20000; padding:20px; text-align:center">Kunde inte ladda menyn just nu. Vänligen försök lite senare</p>
+    `
+  }
+}
+// Hämta kalla dryckor
+async function getKallKaffe() {
+  try {
+    const response = await fetch(`${API_URL}coffee/iced`)
+    // Konvert json till javascript object
+    const data = await response.json()
+    if (!response.ok) {
+      throw new Error(`HTTP-fe status: ${response.status}`)
+    }
+    // VISA ENDAST FÖRSTA FEM PRODUKTER FRÅN API_URL(data)
+    const limitData = data.slice(0, DATA_LIMIT)
+    // Töma kantinen först
+    visaKallMeny.innerHTML = ''
+    // Skapa och lägg till dynamisk h2
+    const headerkallaDrykor = document.createElement('h2')
+    headerkallaDrykor.innerText = 'Kalla Drykor'
+    visaKallMeny.appendChild(headerkallaDrykor)
+
+    visaData(limitData, visaKallMeny)
+  } catch (error) {
+    console.error('error :>> ', error)
+    visaKallMeny.innerHTML = `
+     <h2>Kalla Drycker</h2>
+    <p class="felmeddelande" style="color:#f20000; padding:20px; text-align:center">Kunde inte ladda menyn just nu. Vänligen försök lite senare</p>
+    `
+  }
+}
+
+function visaData(kaffeArray, targetElement) {
+  kaffeArray.forEach((coffee) => {
+    // Closure guard
+    if (coffee.title === 'BRPROBE') return
+    // För att undvika långa text sätter vi max karactär
+    const maxCharacters = 120
+    const description =
+      coffee.description.length > maxCharacters
+        ? coffee.description.substring(0, maxCharacters) + '...'
+        : coffee.description
+
+    // SKAPA SEKTION (section) ELEMENT MED KLASSNAMN
+    const innerSektion = document.createElement('section')
+    innerSektion.className = 'meny-sektion'
+    // SKAPA DIV (div) ELEMENT MED KLASSNAMN
+    const innerDiv = document.createElement('div')
+    innerDiv.className = 'meny-card'
+
+    /* noerror körs om bildlänken är trasig
+    byts till reserbilden*/
+    innerDiv.innerHTML = `
+  <img src="${coffee.image}" onerror="this.onerror=null; this.src='./assets/images/is-matcha.webp'" alt="${coffee.title}" >
+  <h3>${coffee.title}</h3>
+ <p>${description}</p>
+   `
+    innerSektion.appendChild(innerDiv)
+    targetElement.appendChild(innerSektion)
+  })
+}
+// Ska Köras endast på menysidan
+if (visaKallMeny && visaVarmMeny) {
+  getKallKaffe()
+  getVarmKaffe()
+}
