@@ -104,11 +104,14 @@ main {
   display: block;
   margin-bottom: var(--avstand-md);
 }
+
 .hero-innehall {
   height: auto;
 }
 .hero-innehall h1 {
-  color: var(--vit-farg);
+  /* color: var(--vit-farg); */
+  color: var(--accent-farg);
+  text-shadow: 2px 4px 6px var(--primar-farg);
   font-size: 3.2rem;
   margin-bottom: var(--avstand-md);
   position: absolute;
@@ -150,6 +153,7 @@ main {
 }
 .card-hero h2 {
   color: var(--text-farg);
+  text-shadow: 1px 1px 3px var(--accent-farg);
   font-weight: 700;
   font-size: 1.8rem;
   padding-block: var(--avstand-sm);
@@ -196,7 +200,7 @@ main {
   align-items: center;
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 3;
 }
 
 .logotyp-bild {
@@ -205,6 +209,83 @@ main {
   display: inline-block;
 }
 
+/* SIDFOT (Footer section) */
+.sidfot {
+  background-color: var(--primar-farg);
+  color: var(--vit-farg);
+  padding: var(--avstand-xl) var(--avstand-md) var(--avstand-md)
+    var(--avstand-md);
+  margin-top: auto;
+}
+.sidfot-behallare {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--avstand-l);
+}
+.sidfot-container h3 {
+  margin-bottom: var(--avstand-md);
+  color: var(--accent-farg);
+}
+.sidfot-sektion {
+  display: flex;
+  width: 100%;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.sidfot-sektion h3 {
+  color: var(--vit-farg);
+  font-size: 2rem;
+  margin-bottom: var(--avstand-md);
+  border-bottom: 2px solid var(--sekundar-farg);
+  padding-bottom: var(--avstand-xs);
+  display: inline-block;
+  width: fit-content;
+}
+.sidfot-beskrivning {
+  font-size: 1.6rem;
+  line-height: 1.6;
+  margin-bottom: var(--avstand-md);
+  max-width: 400px;
+}
+.sidfot-sektion li {
+  font-size: 1.6rem;
+  color: var(--border-farg);
+}
+.sidfot-sektion a {
+  color: var(--border-farg);
+
+  transition: color 0.2s ease-in-out;
+}
+.sidfot-sektion a:hover {
+  color: var(--accent-farg);
+  text-decoration: underline;
+}
+
+.sociala-media-lista {
+  flex-direction: row;
+  gap: var(--avstand-md);
+  flex-wrap: wrap;
+}
+.kontakt-info {
+  font-style: normal;
+}
+.kontakt-info strong {
+  color: var(--vit-farg);
+  margin-right: var(--avstand-xs);
+}
+.copyright {
+  text-align: center;
+  font-size: 1.4rem;
+  color: var(--border-farg);
+  margin-top: var(--avstand-md);
+  padding-top: var(--avstand-sm);
+  border-top: 1px solid var(--sekundar-farg);
+  opacity: 0.7;
+}
 /* Hamburgarknappens basstil */
 .meny-knapp {
   background: none;
@@ -273,7 +354,7 @@ main {
 
 .meny-lista a.aktiv {
   background-color: var(--sekundar-farg);
-  color: var(--text-farg);
+  color: var(--bakgrund-farg);
 }
 .meny-lista a:hover:not(.aktiv) {
   color: var(--sekundar-farg);
@@ -326,5 +407,24 @@ main {
   .meny-lista {
     flex-direction: row;
     gap: var(--avstand-md);
+  }
+}
+
+/*SIDFOT (Footer section)  */
+@media (min-width: 768px) {
+  .sidfot-behallare {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: var(--avstand-xl);
+  }
+  .sidfot-sektion {
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .sidfot-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
   }
 }
