@@ -66,6 +66,9 @@ const DATA_LIMIT = 4
 async function getVarmKaffe() {
   try {
     const response = await fetch(`${API_URL}coffee/hot`)
+    if (!response.ok) {
+      throw new Error(`HTTP-fel status: ${response.status}`)
+    }
     // Konvert json till javascript object
     const data = await response.json()
     // VISA ENDAST FÖRSTA FEM PRODUKTER FRÅN API_URL(data)
@@ -81,6 +84,11 @@ async function getVarmKaffe() {
     visaData(limitData, visaVarmMeny)
   } catch (error) {
     console.error('error :>> ', error)
+    // Visa fel meddlande om data kunde inte hämtas
+    visaVarmMeny.innerHTML = `
+    <h2>Varma Drycker</h2>
+    <p class="felmeddelande" style="color:#f20000; padding:20px; text-align:center">Kunde inte ladda menyn just nu. Vänligen försök lite senare</p>
+    `
   }
 }
 // Hämta kalla dryckor
@@ -89,6 +97,9 @@ async function getKallKaffe() {
     const response = await fetch(`${API_URL}coffee/iced`)
     // Konvert json till javascript object
     const data = await response.json()
+    if (!response.ok) {
+      throw new Error(`HTTP-fe status: ${response.status}`)
+    }
     // VISA ENDAST FÖRSTA FEM PRODUKTER FRÅN API_URL(data)
     const limitData = data.slice(0, DATA_LIMIT)
     // Töma kantinen först
@@ -101,6 +112,10 @@ async function getKallKaffe() {
     visaData(limitData, visaKallMeny)
   } catch (error) {
     console.error('error :>> ', error)
+    visaKallMeny.innerHTML = `
+     <h2>Kalla Drycker</h2>
+    <p class="felmeddelande" style="color:#f20000; padding:20px; text-align:center">Kunde inte ladda menyn just nu. Vänligen försök lite senare</p>
+    `
   }
 }
 
