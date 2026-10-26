@@ -1,7 +1,7 @@
 /* ANPASSA VARIABLER (Ska hämtas från Figma-designen) */
 :root {
   /* Färger */
-  ---primar-farg: #6f4e37;
+  --primar-farg: #6f4e37;
   --primar-farg: #221108;
   --sekundar-farg: #4c2b10;
   --bakgrund-farg: #b39d7d;
@@ -35,7 +35,7 @@ html {
   scroll-behavior: smooth;
 }
 body {
-  font-family: var(--huvud-typsnitt);
+  font-family: var(--huvud-typsnitt Arial, Helvetica, sans-serif);
   font-size: 1.6rem;
   background-color: var(--bakgrund-farg);
   color: var(--text-farg);
@@ -49,7 +49,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--huvud-typsnitt);
+  font-family: var(--huvud-typsnitt Arial, Helvetica, sans-serif);
   font-weight: 700;
   color: var(--text-farg);
   line-height: 1.2;
@@ -76,7 +76,13 @@ img {
   display: block;
   height: auto;
 }
-
+input,
+button {
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  border: navajowhite;
+}
 /* LAYOUT FÖR HUVUDINNEHÅLL */
 main {
   max-width: 1200px;
@@ -224,7 +230,7 @@ main {
   flex-direction: column;
   gap: var(--avstand-l);
 }
-.sidfot-container h3 {
+.sidfot-container h2 {
   margin-bottom: var(--avstand-md);
   color: var(--accent-farg);
 }
@@ -236,9 +242,18 @@ main {
   flex-direction: column;
 }
 
-.sidfot-sektion h3 {
+.sidfot-sektion h2 {
   color: var(--vit-farg);
   font-size: 2rem;
+  margin-bottom: var(--avstand-md);
+  border-bottom: 2px solid var(--sekundar-farg);
+  padding-bottom: var(--avstand-xs);
+  display: inline-block;
+  width: fit-content;
+}
+.sidfot-sektion h3 {
+  color: var(--vit-farg);
+  font-size: 1.8rem;
   margin-bottom: var(--avstand-md);
   border-bottom: 2px solid var(--sekundar-farg);
   padding-bottom: var(--avstand-xs);
@@ -359,10 +374,6 @@ main {
 .meny-lista a:hover:not(.aktiv) {
   color: var(--sekundar-farg);
 }
-/* ANIMATION: Menyn glider in och ut */
-.navigering {
-  animation: navLink 0.4s ease-in-out;
-}
 
 /* MENY KORT SEKTION SIDA*/
 .meny h1 {
@@ -414,17 +425,85 @@ main {
   justify-content: center;
 }
 
-@keyframes navLink {
-  /* Startläge: Menyn är synlig */
-  from {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  /* Slutläge: Utanför skärmen till vänster osynlig */
-  to {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
+/* KONTAKT_FORM SIDA */
+main {
+  min-height: 700px;
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  margin-block: var(--avstand-xl);
+  align-items: center;
+  justify-content: center;
+}
+.kontakt-main h1 {
+  height: auto;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  margin-bottom: var(--avstand-xl);
+  font-size: clamp(2rem, 2vw, 4rem);
+  font-weight: 800;
+  width: 100%;
+}
+#kontakt-sektion {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--accent-farg);
+  padding: var(--avstand-md);
+  border-radius: var(--avstand-sm);
+}
+.namn-input,
+.mail-input {
+  padding-block: var(--avstand-sm);
+  padding-inline: var(--avstand-md);
+  border-radius: var(--avstand-xs);
+  border: 2px solid var(--border-farg);
+  margin-bottom: var(--avstand-l);
+  color: var(--text-farg);
+  transition: border 0.2s ease;
+}
+.namn-input:focus,
+.mail-input:focus {
+  outline: none;
+  border-color: var(--primar-farg);
+}
+.label-mail,
+.label-namn {
+  color: var(--sekundar-farg);
+  font-weight: 700;
+  margin-bottom: var(--avstand-xs);
+}
+.namn-input::placeholder,
+.mail-input::placeholder {
+  color: var(--primar-farg);
+  opacity: 0.6;
+}
+.submit-btn {
+  background-color: var(--primar-farg);
+  color: var(--vit-farg);
+  padding: var(--avstand-sm) var(--avstand-xs);
+  font-weight: 700;
+  border-radius: var(--avstand-sm);
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
+  display: inline-block;
+  width: 50%;
+}
+.submit-btn:hover {
+  background-color: var(--sekundar-farg);
+}
+.submit-btn:active {
+  transform: scale(0.98);
+}
+.submit-btn:focus-visible {
+  outline: 3px solid var(--accent-farg);
+  outline-offset: 2px;
 }
 
 /* ANIMATION: Förvandla de tre strecken till ett X när knappen har klassen 'oppen' */
