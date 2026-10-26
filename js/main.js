@@ -1,3 +1,21 @@
+'use strict'
+/*
+ * Projektuppgift - Kaffe Grus
+ * Namn: Paul Yashouh
+ */
+
+/**
+ *  Validera Formulärt Inmatning
+ *@return {Boolean}
+ */
+
+// Hämta ELEMENT från DOM
+const visaVarmMeny = document.querySelector('#meny-varm-sektion')
+const visaKallMeny = document.querySelector('#meny-kall-sektion')
+const API_URL = 'https://api.sampleapis.com/'
+//SÄTT EN BEGRÄNSNING FÖR ANTAL PRODUKTER SOM SKA VISAS
+const DATA_LIMIT = 4
+
 // Kör koden först när hela HTML dokumentet har laddats in i webbläsaren
 document.addEventListener('DOMContentLoaded', () => {
   // Anropa funktionen för att generera menyn
@@ -56,12 +74,7 @@ function hanteraMobilmeny() {
     navigering.classList.toggle('oppen')
   })
 }
-// Hämta
-const visaVarmMeny = document.querySelector('#meny-varm-sektion')
-const visaKallMeny = document.querySelector('#meny-kall-sektion')
-const API_URL = 'https://api.sampleapis.com/'
-//SÄTT EN BEGRÄNSNING FÖR ANTAL PRODUKTER SOM SKA VISAS
-const DATA_LIMIT = 4
+
 // Hämta Vram dryckor
 async function getVarmKaffe() {
   try {
@@ -153,3 +166,47 @@ if (visaKallMeny && visaVarmMeny) {
   getKallKaffe()
   getVarmKaffe()
 }
+
+// KONTAKT SEKTION (contact section)
+const kontaktSektion = document.querySelector('#kontakt-sektion')
+// 1. Skapa formuläretElement Globalt EN gång
+let formSektion = document.createElement('form')
+const namnLabel = document.createElement('label')
+namnLabel.className = 'label-namn'
+namnLabel.innerText = 'Förnamn'
+namnLabel.htmlFor = 'namn-felt'
+// SKAPA Input Med sina Attributer
+const förNamn = document.createElement('input')
+förNamn.id = 'namn-felt'
+förNamn.placeholder = 'Förnanm'
+förNamn.type = 'text'
+förNamn.className = 'namn-input'
+
+const mailLabel = document.createElement('label')
+mailLabel.className = 'label-mail'
+mailLabel.innerText = 'E-Post'
+mailLabel.htmlFor = 'mail-felt'
+
+const mail = document.createElement('input')
+mail.id = 'mail-felt'
+mail.placeholder = 'E-Post'
+mail.type = 'email'
+mail.className = 'mail-input'
+
+const submitKnapp = document.createElement('button')
+submitKnapp.type = 'submit'
+submitKnapp.className = 'submit-btn'
+submitKnapp.innerText = 'Submit'
+
+const errorMessage = document.createElement('p')
+
+errorMessage.innerText = ''
+errorMessage.style.color = 'red'
+// Bygg och lägg förmuläret på sidan
+formSektion.appendChild(namnLabel)
+formSektion.appendChild(förNamn)
+formSektion.appendChild(mailLabel)
+formSektion.appendChild(mail)
+formSektion.appendChild(submitKnapp)
+formSektion.appendChild(errorMessage)
+kontaktSektion.appendChild(formSektion)
