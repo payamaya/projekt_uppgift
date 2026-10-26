@@ -87,13 +87,6 @@ async function getVarmKaffe() {
     const data = await response.json()
     // VISA ENDAST FÖRSTA FEM PRODUKTER FRÅN API_URL(data)
     const limitData = data.slice(0, DATA_LIMIT)
-    // Töma kantinen först
-    visaVarmMeny.innerHTML = ''
-
-    // Skapa och lägg till dynamisk h2
-    const headerVarmDryckor = document.createElement('h2')
-    headerVarmDryckor.innerText = 'Vamra Dryker'
-    visaVarmMeny.appendChild(headerVarmDryckor)
 
     visaData(limitData, visaVarmMeny)
   } catch (error) {
@@ -118,12 +111,6 @@ async function getKallKaffe() {
     }
     // VISA ENDAST FÖRSTA FEM PRODUKTER FRÅN API_URL(data)
     const limitData = data.slice(0, DATA_LIMIT)
-    // Töma kantinen först
-    visaKallMeny.innerHTML = ''
-    // Skapa och lägg till dynamisk h2
-    const headerkallaDrykor = document.createElement('h2')
-    headerkallaDrykor.innerText = 'Kalla Drykor'
-    visaKallMeny.appendChild(headerkallaDrykor)
 
     visaData(limitData, visaKallMeny)
   } catch (error) {
