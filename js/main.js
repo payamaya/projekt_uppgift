@@ -210,3 +210,35 @@ formSektion.appendChild(mail)
 formSektion.appendChild(submitKnapp)
 formSektion.appendChild(errorMessage)
 kontaktSektion.appendChild(formSektion)
+
+function skapaOchValideraFrom() {
+  let errors = []
+  // Rensa gamla fel meddelande
+  errorMessage.innerText = ''
+
+  if (förNamn.value.trim() === '') {
+    errors.push('Du måste ange ditt namn')
+  }
+  if (mail.value.trim() === '') {
+    errors.push('Du måste ange ditt e-post address')
+  }
+  // Visa error meddelande pm fel finns coh avbryt
+  if (errors.length > 0) {
+    errorMessage.innerText = errors.join(', ')
+    return false
+  }
+  // Om inga fel finns
+  console.log('True: ', true)
+  formSektion.reset()
+  return true
+}
+// HändelseLyssnare anropa skapaOchValideraFrom vid inskickninig
+kontaktSektion.addEventListener('submit', (e) => {
+  // Förhindra sidan från att ladda om
+  e.preventDefault()
+  const isValid = skapaOchValideraFrom()
+  if (!isValid) {
+    console.log('Is From Valid :>> ', isValid)
+    return
+  }
+})
