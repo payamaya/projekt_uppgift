@@ -27,6 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // FUNKTION: Generera navigationsmeny
 function skapaNavigeringsMeny() {
+  // Hämta listelementet från HTML-Koden
+  const menyLista = document.querySelector('#meny-lista')
+
+  if (!menyLista) return
   // Array med webbplats sidor
   const sidor = [
     { namn: 'Startsida', lank: 'index.html' },
@@ -34,9 +38,6 @@ function skapaNavigeringsMeny() {
     { namn: 'Kontakt', lank: 'kontakt.html' },
     { namn: 'Om Oss', lank: 'om-oss.html' },
   ]
-
-  // Hämta listelementet från HTML-Koden
-  const menyLista = document.querySelector('#meny-lista')
 
   // Hämta aktuella filnam för att kunna markera aktiv sida med index.html fallback
   const nuvarandesida =
@@ -98,10 +99,12 @@ async function getVarmKaffe() {
   } catch (error) {
     console.error('error :>> ', error)
     // Visa fel meddlande om data kunde inte hämtas
-    visaVarmMeny.innerHTML = `
+    if (visaVarmMeny) {
+      visaVarmMeny.innerHTML = `
     <h2>Varma Drycker</h2>
     <p class="felmeddelande" style="color:#f20000; padding:20px; text-align:center">Kunde inte ladda menyn just nu. Vänligen försök lite senare</p>
     `
+    }
   }
 }
 // Hämta kalla dryckor
@@ -125,14 +128,17 @@ async function getKallKaffe() {
     visaData(limitData, visaKallMeny)
   } catch (error) {
     console.error('error :>> ', error)
-    visaKallMeny.innerHTML = `
-     <h2>Kalla Drycker</h2>
-    <p class="felmeddelande" style="color:#f20000; padding:20px; text-align:center">Kunde inte ladda menyn just nu. Vänligen försök lite senare</p>
-    `
+    if (visaKallMeny) {
+      visaKallMeny.innerHTML = `
+      <h2>Kalla Drycker</h2>
+      <p class="felmeddelande" style="color:#f20000; padding:20px; text-align:center">Kunde inte ladda menyn just nu. Vänligen försök lite senare</p>
+      `
+    }
   }
 }
 
 function visaData(kaffeArray, targetElement) {
+  if (!targetElement) return
   kaffeArray.forEach((coffee) => {
     // Closure guard
     if (coffee.title === 'BRPROBE') return
@@ -169,76 +175,81 @@ if (visaKallMeny && visaVarmMeny) {
 
 // KONTAKT SEKTION (contact section)
 const kontaktSektion = document.querySelector('#kontakt-sektion')
-// 1. Skapa formuläretElement Globalt EN gång
-let formSektion = document.createElement('form')
-const namnLabel = document.createElement('label')
-namnLabel.className = 'label-namn'
-namnLabel.innerText = 'Förnamn'
-namnLabel.htmlFor = 'namn-felt'
-// SKAPA Input Med sina Attributer
-const förNamn = document.createElement('input')
-förNamn.id = 'namn-felt'
-förNamn.placeholder = 'Förnanm'
-förNamn.type = 'text'
-förNamn.className = 'namn-input'
 
-const mailLabel = document.createElement('label')
-mailLabel.className = 'label-mail'
-mailLabel.innerText = 'E-Post'
-mailLabel.htmlFor = 'mail-felt'
+//Skapa formuläretElement Globalt EN gång
+if (kontaktSektion) {
+  let formSektion = document.createElement('form')
+  formSektion.className = 'form'
+  const namnLabel = document.createElement('label')
+  namnLabel.className = 'label-namn'
+  namnLabel.innerText = 'Förnamn'
+  namnLabel.htmlFor = 'namn-felt'
+  // SKAPA Input Med sina Attributer
+  const förNamn = document.createElement('input')
+  förNamn.id = 'namn-felt'
+  förNamn.placeholder = 'Förnanm'
+  förNamn.type = 'text'
+  förNamn.className = 'namn-input'
 
-const mail = document.createElement('input')
-mail.id = 'mail-felt'
-mail.placeholder = 'E-Post'
-mail.type = 'email'
-mail.className = 'mail-input'
+  const mailLabel = document.createElement('label')
+  mailLabel.className = 'label-mail'
+  mailLabel.innerText = 'E-Post'
+  mailLabel.htmlFor = 'mail-felt'
 
-const submitKnapp = document.createElement('button')
-submitKnapp.type = 'submit'
-submitKnapp.className = 'submit-btn'
-submitKnapp.innerText = 'Submit'
+  const mail = document.createElement('input')
+  mail.id = 'mail-felt'
+  mail.placeholder = 'E-Post'
+  mail.type = 'email'
+  mail.className = 'mail-input'
 
-const errorMessage = document.createElement('p')
+  const submitKnapp = document.createElement('button')
+  submitKnapp.type = 'submit'
+  submitKnapp.className = 'submit-btn'
+  submitKnapp.innerText = 'Submit'
 
-errorMessage.innerText = ''
-errorMessage.style.color = 'red'
-// Bygg och lägg förmuläret på sidan
-formSektion.appendChild(namnLabel)
-formSektion.appendChild(förNamn)
-formSektion.appendChild(mailLabel)
-formSektion.appendChild(mail)
-formSektion.appendChild(submitKnapp)
-formSektion.appendChild(errorMessage)
-kontaktSektion.appendChild(formSektion)
+  const errorMessage = document.createElement('p')
 
-function skapaOchValideraFrom() {
-  let errors = []
-  // Rensa gamla fel meddelande
   errorMessage.innerText = ''
+  errorMessage.style.color = 'red'
+  // Bygg och lägg förmuläret på sidan
+  formSektion.appendChild(namnLabel)
+  formSektion.appendChild(förNamn)
+  formSektion.appendChild(mailLabel)
+  formSektion.appendChild(mail)
+  formSektion.appendChild(submitKnapp)
+  formSektion.appendChild(errorMessage)
+  kontaktSektion.appendChild(formSektion)
 
-  if (förNamn.value.trim() === '') {
-    errors.push('Du måste ange ditt namn')
+  function skapaOchValideraFrom() {
+    let errors = []
+    // Rensa gamla fel meddelande
+    errorMessage.innerText = ''
+
+    if (förNamn.value.trim() === '') {
+      errors.push('Du måste ange ditt namn')
+    }
+    if (mail.value.trim() === '') {
+      errors.push('Du måste ange en e-postadress')
+    }
+    // Visa error meddelande pm fel finns coh avbryt
+    if (errors.length > 0) {
+      errorMessage.innerText = errors.join(', ')
+      return false
+    }
+    // Om inga fel finns
+    console.log('True: ', true)
+    formSektion.reset()
+    return true
   }
-  if (mail.value.trim() === '') {
-    errors.push('Du måste ange ditt e-post address')
-  }
-  // Visa error meddelande pm fel finns coh avbryt
-  if (errors.length > 0) {
-    errorMessage.innerText = errors.join(', ')
-    return false
-  }
-  // Om inga fel finns
-  console.log('True: ', true)
-  formSektion.reset()
-  return true
+
+  // HändelseLyssnare anropa skapaOchValideraFrom vid inskickninig
+  formSektion.addEventListener('submit', (e) => {
+    // Förhindra sidan från att ladda om
+    e.preventDefault()
+    const isValid = skapaOchValideraFrom()
+    if (!isValid) {
+      console.log('Is From Valid :>> ', isValid)
+      return
+    }
+  })
 }
-// HändelseLyssnare anropa skapaOchValideraFrom vid inskickninig
-kontaktSektion.addEventListener('submit', (e) => {
-  // Förhindra sidan från att ladda om
-  e.preventDefault()
-  const isValid = skapaOchValideraFrom()
-  if (!isValid) {
-    console.log('Is From Valid :>> ', isValid)
-    return
-  }
-})

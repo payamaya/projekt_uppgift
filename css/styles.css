@@ -76,7 +76,13 @@ img {
   display: block;
   height: auto;
 }
-
+input,
+button {
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  border: navajowhite;
+}
 /* LAYOUT FÖR HUVUDINNEHÅLL */
 main {
   max-width: 1200px;
@@ -414,6 +420,86 @@ main {
   justify-content: center;
 }
 
+/* KONTAKT_FORM SIDA */
+main {
+  min-height: 700px;
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  margin-block: var(--avstand-xl);
+  align-items: center;
+  justify-content: center;
+}
+.kontakt-main h1 {
+  height: auto;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  margin-bottom: var(--avstand-xl);
+  font-size: clamp(2rem, 2vw, 4rem);
+  font-weight: 800;
+  width: 100%;
+}
+#kontakt-sektion {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--accent-farg);
+  padding: var(--avstand-md);
+  border-radius: var(--avstand-sm);
+}
+.namn-input,
+.mail-input {
+  padding-block: var(--avstand-sm);
+  padding-inline: var(--avstand-md);
+  border-radius: var(--avstand-xs);
+  border: 2px solid var(--border-farg);
+  margin-bottom: var(--avstand-l);
+  color: var(--text-farg);
+  transition: border 0.2s ease;
+}
+.namn-input:focus,
+.mail-input:focus {
+  outline: none;
+  border-color: var(--primar-farg);
+}
+.label-mail,
+.label-namn {
+  color: var(--sekundar-farg);
+  font-weight: 700;
+  margin-bottom: var(--avstand-xs);
+}
+.namn-input::placeholder,
+.mail-input::placeholder {
+  color: var(--primar-fagr);
+  opacity: 0.6;
+}
+.submit-btn {
+  background-color: var(---primar-farg);
+  color: var(--vit-farg);
+  padding: var(--avstand-sm) var(--avstand-xs);
+  font-weight: 700;
+  border-radius: var(--avstand-sm);
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
+  display: inline-block;
+  width: 50%;
+}
+.submit-btn:hover {
+  background-color: var(--sekundar-farg);
+}
+.submit-btn:active {
+  transform: scale(0.98);
+}
+.submit-btn:focus-visible {
+  outline: 3px solid var(--accent-farg);
+  outline-offset: 2px;
+}
 @keyframes navLink {
   /* Startläge: Menyn är synlig */
   from {
