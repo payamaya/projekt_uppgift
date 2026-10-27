@@ -16,6 +16,11 @@ Underlaget har tagits fram i **Figam** och består av:
 
 - **Wireframes (Trådskisser):** Skisser som visar webbplatsens planerade layout för både mindre skärmar (mobil-first) och större skärmar (dator).
 - **Designskiss/Mockup:** En visuell skiss som visar projektets grafiska profil med tänkta färger, typografi, bilder och grafiska element anpassade för målgruppen.
+- **Figma Projekt:** (https://www.figma.com/design/5zdae1WtT0QFWQPceXDazZ/Caf%C3%A9-Miun?node-id=0-1&p=f&t=lVlnqzx98dDYgIcJ-0)
+
+[Figma Publicerat](https://www.figma.com/community/file/1696999681404285582/cafe-miun)
+[FIGMA-Prototyp-Mobile](<[FILE_NAME.pdf](https://www.figma.com/proto/5zdae1WtT0QFWQPceXDazZ/Caf%C3%A9-Miun?node-id=0-1&p=f&t=nmRpYHraRRHOZctz-0&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=182%3A2372&show-proto-sidebar=1)>)
+[FIGMA-Prototyp-Desktop](<[%3C[FILE_NAME.pdf](https://www.figma.com/proto/5zdae1WtT0QFWQPceXDazZ/Caf%C3%A9-Miun?node-id=0-1&p=f&t=nmRpYHraRRHOZctz-0&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=182%3A2372&show-proto-sidebar=1)%3E](https://www.figma.com/proto/5zdae1WtT0QFWQPceXDazZ/Caf%C3%A9-Miun?node-id=0-1&p=f&t=nmRpYHraRRHOZctz-0&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=1%3A13&show-proto-sidebar=1)>)
 
 ## Tekniska struktur
 
