@@ -178,6 +178,19 @@ if (kontaktSektion) {
   förNamn.type = 'text'
   förNamn.className = 'namn-input'
 
+  // SKAPA Input Med sina Attributer
+  const textareaLabel = document.createElement('label')
+  textareaLabel.className = 'label-namn'
+  textareaLabel.innerText = 'Meddelande'
+  textareaLabel.htmlFor = 'textarea-felt'
+
+  const textArea = document.createElement('textarea')
+  textArea.id = 'textarea-felt'
+  textArea.placeholder = 'Meddelande'
+  textArea.rows = 5
+  textArea.cols = 12
+  textArea.className = 'namn-input'
+
   const mailLabel = document.createElement('label')
   mailLabel.className = 'label-mail'
   mailLabel.innerText = 'E-Post'
@@ -203,6 +216,7 @@ if (kontaktSektion) {
   formSektion.appendChild(förNamn)
   formSektion.appendChild(mailLabel)
   formSektion.appendChild(mail)
+  formSektion.appendChild(textArea)
   formSektion.appendChild(submitKnapp)
   formSektion.appendChild(errorMessage)
   kontaktSektion.appendChild(formSektion)
