@@ -23,6 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Anropa funktionen för mobilmenyn interaktivitet
   hanteraMobilmeny()
+
+  // Ska Köras endast på menysidan
+  if (visaKallMeny && visaVarmMeny) {
+    getKallKaffe()
+    getVarmKaffe()
+  }
 })
 
 // FUNKTION: Generera navigationsmeny
@@ -75,7 +81,16 @@ function hanteraMobilmeny() {
     navigering.classList.toggle('oppen')
   })
 }
-
+// Helper för SlumpProdukt Pris (randomPrice)
+function adderPris(itemArray) {
+  return itemArray.map((item) => {
+    const randomPrice = Math.floor(Math.random() * (120 - 90 + 1) + 90)
+    return {
+      ...item,
+      pris: randomPrice,
+    }
+  })
+}
 // Hämta Vram dryckor
 async function getVarmKaffe() {
   try {
@@ -87,8 +102,8 @@ async function getVarmKaffe() {
     const data = await response.json()
     // VISA ENDAST FÖRSTA FEM PRODUKTER FRÅN API_URL(data)
     const limitData = data.slice(0, DATA_LIMIT)
-
-    visaData(limitData, visaVarmMeny)
+    const dataMedPris = adderPris(limitData)
+    visaData(dataMedPris, visaVarmMeny)
   } catch (error) {
     console.error('error :>> ', error)
     // Visa fel meddlande om data kunde inte hämtas
@@ -111,8 +126,8 @@ async function getKallKaffe() {
     }
     // VISA ENDAST FÖRSTA FEM PRODUKTER FRÅN API_URL(data)
     const limitData = data.slice(0, DATA_LIMIT)
-
-    visaData(limitData, visaKallMeny)
+    const dataMedPris = adderPris(limitData)
+    visaData(dataMedPris, visaKallMeny)
   } catch (error) {
     console.error('error :>> ', error)
     if (visaKallMeny) {
@@ -149,15 +164,11 @@ function visaData(kaffeArray, targetElement) {
   <img src="${coffee.image}" onerror="this.onerror=null; this.src='./assets/images/is-matcha.webp'" alt="${coffee.title}" >
   <h3>${coffee.title}</h3>
  <p>${description}</p>
+ <span>${coffee.pris}:-</span>
    `
     innerSektion.appendChild(innerDiv)
     targetElement.appendChild(innerSektion)
   })
-}
-// Ska Köras endast på menysidan
-if (visaKallMeny && visaVarmMeny) {
-  getKallKaffe()
-  getVarmKaffe()
 }
 
 // KONTAKT SEKTION (contact section)
