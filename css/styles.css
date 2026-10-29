@@ -76,6 +76,11 @@ img {
   display: block;
   height: auto;
 }
+span {
+  font-size: var(--avstand-md);
+  color: var(--accent-farg);
+  font-weight: 700;
+}
 input,
 button {
   font: inherit;
