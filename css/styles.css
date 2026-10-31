@@ -4,7 +4,7 @@
   --primar-farg: #6f4e37;
   --primar-farg: #221108;
   --sekundar-farg: #4c2b10;
-  --bakgrund-farg: #b39d7d;
+  --bakgrund-farg: #f7cdab;
   --border-farg: #ffebcd;
   --text-farg: #2b1d12;
   --vit-farg: #ffffff;
@@ -207,7 +207,8 @@ main {
   transform: translateX(-50%) translateY(-2px);
 }
 
-.pre-footer {
+.pre-footer,
+.pre-header {
   margin-top: var(--avstand-md);
   border-radius: 8px;
   border: 2px solid var(--sekundar-farg);
