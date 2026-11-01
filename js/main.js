@@ -12,7 +12,9 @@
 // Hämta ELEMENT från DOM
 const visaVarmMeny = document.querySelector('#meny-varm-sektion')
 const visaKallMeny = document.querySelector('#meny-kall-sektion')
-const API_URL = 'https://api.sampleapis.com/'
+// KONTAKT SEKTION (contact section)
+const kontaktSektion = document.querySelector('#kontakt-sektion')
+const API_URL = 'https://api.sampleapis.com/' //BASE_URL
 //SÄTT EN BEGRÄNSNING FÖR ANTAL PRODUKTER SOM SKA VISAS
 const DATA_LIMIT = 4
 
@@ -26,9 +28,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Ska Köras endast på menysidan
   if (visaKallMeny && visaVarmMeny) {
-    getKallKaffe()
     getVarmKaffe()
+    getKallKaffe()
   }
+  // getVarmKaffe()
 })
 
 // FUNKTION: Generera navigationsmeny
@@ -91,44 +94,39 @@ function adderPris(itemArray) {
     }
   })
 }
-// Hämta Vram dryckor
-async function getVarmKaffe() {
-  try {
-    const response = await fetch(`${API_URL}coffee/hot`)
-    if (!response.ok) {
-      throw new Error(`HTTP-fel status: ${response.status}`)
-    }
-    // Konvert json till javascript object
-    const data = await response.json()
-    // VISA ENDAST FÖRSTA FEM PRODUKTER FRÅN API_URL(data)
-    const limitData = data.slice(0, DATA_LIMIT)
-    const dataMedPris = adderPris(limitData)
-    visaData(dataMedPris, visaVarmMeny)
-  } catch (error) {
-    console.error('error :>> ', error)
-    // Visa fel meddlande om data kunde inte hämtas
-    if (visaVarmMeny) {
-      visaFelMeddelande('meny-varm-sektion')
-    }
+
+async function getOchSparaKaffeData(
+  endpoint,
+  storageKey,
+  menySektion,
+  renderTarget,
+) {
+  // Kontrollera om kaffedatan redan finns sparad
+  const sparatData = localStorage.getItem(storageKey)
+  if (sparatData) {
+    // Göt texten till JavaScript
+    const lokalData = JSON.parse(sparatData)
+    visaData(lokalData, renderTarget)
+    return
   }
-}
-// Hämta kalla dryckor
-async function getKallKaffe() {
   try {
-    const response = await fetch(`${API_URL}coffee/iced`)
+    const response = await fetch(`${API_URL}${endpoint}`)
     // Konvert json till javascript object
-    const data = await response.json()
     if (!response.ok) {
       throw new Error(`HTTP-fe status: ${response.status}`)
     }
+    // Spara response data i data variabel
+    const data = await response.json()
     // VISA ENDAST FÖRSTA FEM PRODUKTER FRÅN API_URL(data)
     const limitData = data.slice(0, DATA_LIMIT)
     const dataMedPris = adderPris(limitData)
-    visaData(dataMedPris, visaKallMeny)
+
+    localStorage.setItem(storageKey, JSON.stringify(dataMedPris))
+    visaData(dataMedPris, renderTarget)
   } catch (error) {
     console.error('error :>> ', error)
-    if (visaKallMeny) {
-      visaFelMeddelande('meny-kall-sektion')
+    if (renderTarget) {
+      visaFelMeddelande(menySektion)
     }
   }
 }
@@ -140,6 +138,24 @@ function visaFelMeddelande(sektionId) {
       <p class="felmeddelande" style="color:#f20000; padding:20px;">Kunde inte ladda menyn just nu. Vänligen försök lite senare</p>
       `
   }
+}
+// Hämta Varm dryckor
+async function getVarmKaffe() {
+  await getOchSparaKaffeData(
+    'coffee/iced', //API endpoint
+    'menVarmKaffe', //Localstorage nyckelkey
+    'meny-kall-sektion', // Id PÅ HTML som ska visa fel meddelande
+    visaKallMeny, // HTML-element som visar data på skärmen
+  )
+}
+// Hämta kalla dryckor
+async function getKallKaffe() {
+  await getOchSparaKaffeData(
+    'coffee/hot', // API Endpoint
+    'menKallKaffe', // Sparade namn i localstorage
+    'meny-varm-sektion', // Id PÅ HTML som ska visa fel meddelande
+    visaVarmMeny, //  HTML-element som visar data på skärmen
+  )
 }
 
 function visaData(kaffeArray, targetElement) {
@@ -173,9 +189,6 @@ function visaData(kaffeArray, targetElement) {
     targetElement.appendChild(innerSektion)
   })
 }
-
-// KONTAKT SEKTION (contact section)
-const kontaktSektion = document.querySelector('#kontakt-sektion')
 
 //Skapa formuläretElement Globalt EN gång
 if (kontaktSektion) {
