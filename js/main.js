@@ -45,7 +45,7 @@ function skapaNavigeringsMeny() {
     { namn: 'Startsida', lank: 'index.html' },
     { namn: 'Meny', lank: 'meny.html' },
     { namn: 'Kontakt', lank: 'kontakt.html' },
-    { namn: 'Om Oss', lank: 'om-oss.html' },
+    // { namn: 'Om Oss', lank: 'om-oss.html' },
   ]
 
   // Hämta aktuella filnam för att kunna markera aktiv sida med index.html fallback
