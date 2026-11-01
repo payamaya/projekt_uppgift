@@ -18,9 +18,10 @@ Underlaget har tagits fram i **Figam** och består av:
 - **Designskiss/Mockup:** En visuell skiss som visar projektets grafiska profil med tänkta färger, typografi, bilder och grafiska element anpassade för målgruppen.
 - **Figma Projekt:** (https://www.figma.com/design/5zdae1WtT0QFWQPceXDazZ/Caf%C3%A9-Miun?node-id=0-1&p=f&t=lVlnqzx98dDYgIcJ-0)
 
-[Figma Publicerat](https://www.figma.com/community/file/1696999681404285582/cafe-miun)
-[FIGMA-Prototyp-Mobile](<[FILE_NAME.pdf](https://www.figma.com/proto/5zdae1WtT0QFWQPceXDazZ/Caf%C3%A9-Miun?node-id=0-1&p=f&t=nmRpYHraRRHOZctz-0&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=182%3A2372&show-proto-sidebar=1)>)
-[FIGMA-Prototyp-Desktop](<[%3C[FILE_NAME.pdf](https://www.figma.com/proto/5zdae1WtT0QFWQPceXDazZ/Caf%C3%A9-Miun?node-id=0-1&p=f&t=nmRpYHraRRHOZctz-0&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=182%3A2372&show-proto-sidebar=1)%3E](https://www.figma.com/proto/5zdae1WtT0QFWQPceXDazZ/Caf%C3%A9-Miun?node-id=0-1&p=f&t=nmRpYHraRRHOZctz-0&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=1%3A13&show-proto-sidebar=1)>)
+[Figma Publicerat Prototyp](https://www.figma.com/community/file/1696999681404285582/cafe-miun)
+[FIGMA-Mockup-Mobile (PDF) ](/design/Mockup-Mobil.pdf)
+[FIGMA-Mockup-Desktop (PDF) ](/design/Mockup-Desktop.pdf)
+[FIGMA-wireframe (PDF) ](/design/wireframe.pdf)
 
 ## Tekniska struktur
 
@@ -32,7 +33,7 @@ Projektet är byggd med:
 
 ## Dokumentation
 
-Den formella projektrapporten kommer och laddas up som en PDF-file i detta repository när projektet är slutfört
+[Klicka här för att läsa hela rapporten (PDF)](/Kaffe%20Grus%20Rapport.pdf)
 
 ## Installation
 
@@ -40,3 +41,8 @@ För att köra projektet lokalt:
 
 1. Klona repot: git clone `<repo-url>`
 2. Öppna index.html i valfri webbläsare eller starta via _Live Server_ i VS Code.
+
+Länkarna till webplats på olika plattformar:
+
+- **Vercel**: https://projektuppgift.vercel.app/
+- **Netlify**: https://projekt-miun.netlify.app/

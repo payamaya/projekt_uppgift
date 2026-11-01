@@ -482,7 +482,7 @@ main {
   align-items: center;
   justify-content: center;
   color: var(--primar-farg);
-  font-size: clamp(2.2rem, 2.5vw, 2.8rem);
+  font-size: clamp(2rem, 2.5vw, 2.8rem);
 }
 iframe {
   width: 300px;
