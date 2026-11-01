@@ -108,10 +108,7 @@ async function getVarmKaffe() {
     console.error('error :>> ', error)
     // Visa fel meddlande om data kunde inte hämtas
     if (visaVarmMeny) {
-      visaVarmMeny.innerHTML = `
-    <h2>Varma Drycker</h2>
-    <p class="felmeddelande" style="color:#f20000; padding:20px; text-align:center">Kunde inte ladda menyn just nu. Vänligen försök lite senare</p>
-    `
+      visaFelMeddelande('meny-varm-sektion')
     }
   }
 }
@@ -131,11 +128,17 @@ async function getKallKaffe() {
   } catch (error) {
     console.error('error :>> ', error)
     if (visaKallMeny) {
-      visaKallMeny.innerHTML = `
-      <h2>Kalla Drycker</h2>
-      <p class="felmeddelande" style="color:#f20000; padding:20px; text-align:center">Kunde inte ladda menyn just nu. Vänligen försök lite senare</p>
-      `
+      visaFelMeddelande('meny-kall-sektion')
     }
+  }
+}
+function visaFelMeddelande(sektionId) {
+  const sektion = document.getElementById(sektionId)
+  if (sektion) {
+    sektion.innerHTML = `
+      <h2>Kalla Drycker</h2>
+      <p class="felmeddelande" style="color:#f20000; padding:20px;">Kunde inte ladda menyn just nu. Vänligen försök lite senare</p>
+      `
   }
 }
 
